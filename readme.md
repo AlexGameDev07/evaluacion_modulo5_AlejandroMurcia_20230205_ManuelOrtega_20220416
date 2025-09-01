@@ -14,7 +14,7 @@ Aplicación móvil desarrollada en React Native utilizando Expo, diseñada para 
 ## 🎥 Video de Demostración
 
 🔗 [Ver demostración en video](#)  
-*https://drive.google.com/file/d/1qQ2qUAIqLkfXC23VVR6x_RqGxNoIkFYb/view?usp=sharing*
+*https://drive.google.com/file/d/1VDLJS2JqUwRYjBPcyGjgrmSys1MQpTWx/view?usp=sharing*
 
 ---
 
