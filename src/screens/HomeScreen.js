@@ -4,6 +4,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useIsFocused } from '@react-navigation/native';
 import { auth, db } from '../../firebaseConfig';
 import { useUserData } from '../hooks/useUserData';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomeScreen({ navigation }) {
   const isFocused = useIsFocused();
@@ -40,37 +41,104 @@ export default function HomeScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Bienvenido, {userData.name}</Text>
-      <Text>Correo: {userData.email}</Text>
-      <Text>Edad: {userData.age || 'No especificada'}</Text>
-      <Text>Especialidad: {userData.specialty || 'No especificada'}</Text>
+    <LinearGradient
+      colors={['#1a1a2e', '#16213e', '#0f3460', '#ffd700']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={styles.gradient}
+    >
+      <View style={styles.centered}>
+        <View style={styles.glass}>
+          <Text style={styles.title}>Bienvenido, {userData.name}</Text>
+          <Text style={styles.subtitle}>¡Has iniciado sesión!</Text>
+          <Text style={styles.subtitle}>Correo: {userData.email}</Text>
+          <Text style={styles.subtitle}>Edad: {userData.age || 'No especificada'}</Text>
+          <Text style={styles.subtitle}>Especialidad: {userData.specialty || 'No especificada'}</Text>
 
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => navigation.navigate('EditProfile', { userData })}
-      >
-        <Text style={{ color: '#fff' }}>Editar perfil</Text>
-      </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('EditProfile', { userData })}
+          >
+            <Text style={styles.buttonText}>Editar perfil</Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.btn, { backgroundColor: '#888', marginTop: 10 }]}
-        onPress={handleLogout}
-      >
-        <Text style={{ color: '#fff' }}>Cerrar sesión</Text>
-      </TouchableOpacity>
-    </View>
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: '#888', marginTop: 10 }]}
+            onPress={handleLogout}
+          >
+            <Text style={styles.buttonText}>Cerrar sesión</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: 'center' },
-  welcome: { fontSize: 22, marginBottom: 12 },
-  btn: {
-    backgroundColor: '#0066cc',
-    padding: 12,
+  gradient: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 6,
-    marginTop: 20,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  glass: {
+    width: 340,
+    padding: 36,
+    borderRadius: 36,
+    backgroundColor: 'rgba(30,30,40,0.65)',
+    shadowColor: '#ffd700',
+    shadowOffset: { width: 0, height: 16 },
+    shadowOpacity: 0.6,
+    shadowRadius: 32,
+    elevation: 32,
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#ffd700',
+  },
+  title: {
+    fontSize: 34,
+    fontWeight: 'bold',
+    color: '#ffd700',
+    textShadowColor: '#0f3460',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 16,
+    marginBottom: 18,
+    letterSpacing: 2,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 20,
+    color: '#fff',
+    marginBottom: 18,
+    fontStyle: 'italic',
+    opacity: 0.85,
+    textShadowColor: '#ffd700',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 8,
+    textAlign: 'center',
+  },
+  button: {
+    backgroundColor: '#ffd700',
+    padding: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 10,
+    width: '100%',
+    shadowColor: '#ffd700',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.5,
+    shadowRadius: 12,
+    elevation: 12,
+  },
+  buttonText: {
+    color: '#222',
+    fontWeight: 'bold',
+    fontSize: 18,
+    letterSpacing: 1,
   },
 });
