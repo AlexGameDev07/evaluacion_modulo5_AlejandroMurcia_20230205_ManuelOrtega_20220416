@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
-
+import { useLogin } from '../hooks/useLogin';
 
 export default function LoginScreen({ navigation }) {
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
+const login = useLogin(auth);
 
 
 const handleLogin = async () => {
 try {
-await signInWithEmailAndPassword(auth, email, password);
+await login({ email, password });
 navigation.replace('Home');
 } catch (error) {
 Alert.alert('Error', error.message);

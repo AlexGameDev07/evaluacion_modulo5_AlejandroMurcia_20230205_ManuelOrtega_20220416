@@ -1,55 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
-import { auth, db } from '../../firebaseConfig';
 import { useIsFocused } from '@react-navigation/native';
+import { auth, db } from '../../firebaseConfig';
+import { useUserData } from '../hooks/useUserData';
 
 export default function HomeScreen({ navigation }) {
-  const [userData, setUserData] = useState(null);
   const isFocused = useIsFocused();
+  const [userData, fetchUserData] = useUserData(auth, db);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (user) => {
+    const unsub = onAuthStateChanged(auth, (user) => {
       if (!user) {
         navigation.replace('Login');
-        return;
-      }
-      try {
-        const uid = user.uid;
-        const userDoc = await getDoc(doc(db, 'users', uid));
-        if (userDoc.exists()) {
-          setUserData(userDoc.data());
-        }
-      } catch (error) {
-        console.log('Error al obtener datos del usuario:', error);
       }
     });
     return () => unsub();
   }, [navigation]);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const user = auth.currentUser;
-      if (!user) {
-        navigation.replace('Login');
-        return;
-      }
-      try {
-        const uid = user.uid;
-        const userDoc = await getDoc(doc(db, 'users', uid));
-        if (userDoc.exists()) {
-          setUserData(userDoc.data());
-        }
-      } catch (error) {
-        console.log('Error al obtener datos del usuario:', error);
-      }
-    };
-
-    if (isFocused) {
-      fetchUserData();
-    }
-  }, [isFocused, navigation]);
+    if (isFocused) fetchUserData();
+  }, [isFocused, fetchUserData]);
 
   const handleLogout = async () => {
     try {

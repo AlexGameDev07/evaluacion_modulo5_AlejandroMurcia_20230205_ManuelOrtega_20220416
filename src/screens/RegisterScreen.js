@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { setDoc, doc } from 'firebase/firestore';
+import { useRegister } from '../hooks/useRegister';
 import { auth, db } from '../../firebaseConfig';
 
 
@@ -11,21 +10,13 @@ const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [age, setAge] = useState('');
 const [specialty, setSpecialty] = useState('');
+const register = useRegister(auth, db);
 
 
 const handleRegister = async () => {
 if (!name || !email || !password) return Alert.alert('Error', 'Completa los campos');
 try {
-const userCred = await createUserWithEmailAndPassword(auth, email, password);
-const uid = userCred.user.uid;
-// Guardar datos en Firestore
-await setDoc(doc(db, 'users', uid), {
-name,
-email,
-age: age || null,
-specialty: specialty || null,
-createdAt: new Date().toISOString(),
-});
+await register({ name, email, password, age, specialty });
 navigation.replace('Home');
 } catch (error) {
 Alert.alert('Error', error.message);

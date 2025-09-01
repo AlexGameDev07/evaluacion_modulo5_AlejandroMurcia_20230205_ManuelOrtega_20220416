@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
+import { useAuthListener } from '../hooks/useAuthListener';
 
 export default function SplashScreen({ navigation }) {
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setTimeout(() => {
-        if (user) navigation.replace('Home');
-        else navigation.replace('Login');
-      }, 1200);
-    });
-    return () => unsubscribe();
-  }, []);
+  useAuthListener(auth, (user) => {
+    setTimeout(() => {
+      if (user) navigation.replace('Home');
+      else navigation.replace('Login');
+    }, 1200);
+  });
 
   return (
     <LinearGradient
