@@ -48,6 +48,16 @@ Dotenv para variables de entorno
 
 Linear Gradient para estilos visuales
 
+📁 Estructura del Proyecto
+Código
+├── assets/
+├── components/
+├── screens/
+├── navigation/
+├── firebase/
+├── App.js
+└── app.json
+
 🛠️ Instalación y Ejecución
 Clona el repositorio
 
