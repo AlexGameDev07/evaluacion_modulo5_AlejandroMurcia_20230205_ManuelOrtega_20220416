@@ -20,49 +20,47 @@ Aplicación móvil desarrollada en React Native utilizando Expo, diseñada para 
 
 ## 📦 Dependencias del Proyecto
 
-```json
-"dependencies": {
-  "@react-navigation/native": "^7.1.17",
-  "@react-navigation/native-stack": "^7.3.26",
-  "expo": "~53.0.22",
-  "expo-constants": "~17.1.7",
-  "expo-status-bar": "~2.2.3",
-  "expo-linear-gradient": "~14.1.5",
-  "firebase": "^12.2.1",
-  "react": "19.0.0",
-  "react-native": "0.79.6",
-  "react-native-dotenv": "^3.4.11",
-  "react-native-gesture-handler": "~2.24.0",
-  "react-native-safe-area-context": "4.10.1",
-  "react-native-screens": "~4.11.1"
-}
+Este proyecto utiliza las siguientes librerías y frameworks:
 
-🚀 Tecnologías Utilizadas
-React Native + Expo para desarrollo móvil
+| Paquete                            | Versión     | Descripción breve                                      |
+|------------------------------------|-------------|--------------------------------------------------------|
+| `@react-navigation/native`         | ^7.1.17     | Navegación principal en React Native                  |
+| `@react-navigation/native-stack`   | ^7.3.26     | Navegación tipo stack                                 |
+| `expo`                             | ~53.0.22    | Plataforma para desarrollo rápido en React Native     |
+| `expo-constants`                   | ~17.1.7     | Acceso a constantes del sistema                       |
+| `expo-status-bar`                  | ~2.2.3      | Control de la barra de estado                         |
+| `expo-linear-gradient`             | ~14.1.5     | Gradientes visuales en componentes                    |
+| `firebase`                         | ^12.2.1     | Backend para autenticación y base de datos            |
+| `react`                            | 19.0.0      | Librería base para interfaces                         |
+| `react-native`                     | 0.79.6      | Framework para desarrollo móvil                       |
+| `react-native-dotenv`              | ^3.4.11     | Manejo de variables de entorno                        |
+| `react-native-gesture-handler`     | ~2.24.0     | Gestos táctiles personalizados                        |
+| `react-native-safe-area-context`   | 4.10.1      | Manejo de áreas seguras en pantalla                   |
+| `react-native-screens`             | ~4.11.1     | Optimización de navegación por pantallas              |
 
-Firebase para autenticación y almacenamiento
+---
 
-React Navigation para manejo de rutas
+## 🚀 Tecnologías Utilizadas
 
-Dotenv para variables de entorno
+- ⚛️ **React Native + Expo**: Desarrollo móvil multiplataforma
+- 🔥 **Firebase**: Autenticación, base de datos y hosting
+- 🧭 **React Navigation**: Navegación fluida entre pantallas
+- 🔐 **Dotenv**: Variables de entorno seguras
+- 🎨 **Linear Gradient**: Estilos visuales con gradientes
 
-Linear Gradient para estilos visuales
+---
 
-📁 Estructura del Proyecto
-Código
-├── assets/
-├── components/
-├── screens/
-├── navigation/
-├── firebase/
-├── App.js
-└── app.json
+## 📁 Estructura del Proyecto
 
-🛠️ Instalación y Ejecución
-Clona el repositorio
+```plaintext
+📦 Proyecto
+├── assets/              # Recursos gráficos y multimedia
+├── components/          # Componentes reutilizables
+├── screens/             # Pantallas principales de la app
+├── navigation/          # Configuración de rutas
+├── firebase/            # Conexión y configuración de Firebase
+├── App.js               # Punto de entrada de la aplicación
+└── app.json             # Configuración de Expo
 
-Instala las dependencias con npm install
 
-Ejecuta la app con npx expo start
 
-Escanea el QR con Expo Go o usa un emulador
