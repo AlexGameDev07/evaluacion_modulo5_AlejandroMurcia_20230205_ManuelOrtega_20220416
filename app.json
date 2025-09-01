@@ -4,7 +4,7 @@
     "slug": "evaluacion_modulo5_AlejandroMurcia_20230205_ManuelOrtega_20220416",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/splash-icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
